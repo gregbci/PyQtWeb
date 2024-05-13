@@ -1,0 +1,11 @@
+__pycache__ 
+archive/ 
+build/
+dist/ 
+plugins/FeatureExtractorSSVEP
+.idea/ 
+.vscode/ 
+*.egg-info/ 
+*.DS_Store/ 
+*.swp 
+
