@@ -2,15 +2,21 @@ import sys
 from PyQt6.QtWidgets import QApplication
 
 from .MainView import MainView
-#from .TrainingController import TrainingController
+# from .TrainingController import TrainingController
 
 
 def start():
     app = QApplication(sys.argv)
 
-    # inject view into controller
+    # create main view and make it large enough to show "desktop" sized screen
     view = MainView()
-    #controller = TrainingController(view)
+    screenRect = view.screen().availableGeometry()
+    width = int(screenRect.width() * 0.75)
+    height = int(screenRect.height() * 0.75)
+    view.resize(width, height)
+
+    # inject view into controller
+    # controller = TrainingController(view)
 
     # show view and begin Qt event loop
     view.show()
