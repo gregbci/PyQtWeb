@@ -1,4 +1,4 @@
-from PyQt6.QtCore import QUrl, pyqtSlot, QPointF
+from PyQt6.QtCore import QUrl, pyqtSlot
 from PyQt6.QtGui import QIcon
 from PyQt6.QtWidgets import (QLineEdit, QMainWindow, QPushButton, QToolBar)
 from PyQt6.QtWebEngineCore import QWebEnginePage
@@ -9,7 +9,7 @@ class MainView(QMainWindow):
     def __init__(self):
         super().__init__()
 
-        initialUrl = "https://weather.gc.ca/forecast/hourly/ab-52_metric_e.html"
+        initialUrl = "https://instagram.com"
 
         self.backButton = QPushButton()
         self.backButton.setIcon(QIcon(":/qt-project.org/styles/commonstyle/images/left-32.png"))
