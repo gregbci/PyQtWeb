@@ -12,15 +12,11 @@ class MainView(QMainWindow):
         initialUrl = "https://instagram.com"
 
         self.backButton = QPushButton()
-        self.backButton.setIcon(
-            QIcon(":/qt-project.org/styles/commonstyle/images/left-32.png")
-        )
+        self.backButton.setIcon(QIcon(":/qt-project.org/styles/commonstyle/images/left-32.png"))
         self.backButton.clicked.connect(self.backPressed)
 
         self.forwardButton = QPushButton()
-        self.forwardButton.setIcon(
-            QIcon(":/qt-project.org/styles/commonstyle/images/right-32.png")
-        )
+        self.forwardButton.setIcon(QIcon(":/qt-project.org/styles/commonstyle/images/right-32.png"))
         self.forwardButton.clicked.connect(self.forwardPressed)
 
         self.addressLineEdit = QLineEdit()
@@ -66,8 +62,6 @@ class MainView(QMainWindow):
 
     @pyqtSlot()
     def scrollPressed(self):
-        press = QKeyEvent(
-            QEvent.Type.KeyPress, Qt.Key.Key_Down, Qt.KeyboardModifier.NoModifier
-        )
-        QCoreApplication.sendEvent(self.webEngineView.focusProxy(), press)
+        event = QKeyEvent(QEvent.Type.KeyPress, Qt.Key.Key_Down, Qt.KeyboardModifier.NoModifier)
+        QCoreApplication.sendEvent(self.webEngineView.focusProxy(), event)
         QCoreApplication.processEvents()
