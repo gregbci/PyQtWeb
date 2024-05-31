@@ -1,6 +1,6 @@
-from PyQt6.QtCore import QUrl, pyqtSlot
-from PyQt6.QtGui import QIcon
-from PyQt6.QtWidgets import (QLineEdit, QMainWindow, QPushButton, QToolBar)
+from PyQt6.QtCore import QUrl, QEvent, Qt, QCoreApplication, pyqtSlot
+from PyQt6.QtGui import QIcon, QKeyEvent
+from PyQt6.QtWidgets import QLineEdit, QMainWindow, QPushButton, QToolBar
 from PyQt6.QtWebEngineCore import QWebEnginePage
 from PyQt6.QtWebEngineWidgets import QWebEngineView
 
@@ -12,11 +12,15 @@ class MainView(QMainWindow):
         initialUrl = "https://instagram.com"
 
         self.backButton = QPushButton()
-        self.backButton.setIcon(QIcon(":/qt-project.org/styles/commonstyle/images/left-32.png"))
+        self.backButton.setIcon(
+            QIcon(":/qt-project.org/styles/commonstyle/images/left-32.png")
+        )
         self.backButton.clicked.connect(self.backPressed)
 
         self.forwardButton = QPushButton()
-        self.forwardButton.setIcon(QIcon(":/qt-project.org/styles/commonstyle/images/right-32.png"))
+        self.forwardButton.setIcon(
+            QIcon(":/qt-project.org/styles/commonstyle/images/right-32.png")
+        )
         self.forwardButton.clicked.connect(self.forwardPressed)
 
         self.addressLineEdit = QLineEdit()
@@ -62,4 +66,8 @@ class MainView(QMainWindow):
 
     @pyqtSlot()
     def scrollPressed(self):
-        self.webEngineView.page().runJavaScript("window.scrollTo(0, 1000);")
+        press = QKeyEvent(
+            QEvent.Type.KeyPress, Qt.Key.Key_Down, Qt.KeyboardModifier.NoModifier
+        )
+        QCoreApplication.sendEvent(self.webEngineView.focusProxy(), press)
+        QCoreApplication.processEvents()
