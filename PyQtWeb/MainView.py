@@ -1,8 +1,8 @@
-from PyQt6.QtCore import QUrl, QEvent, Qt, QCoreApplication, pyqtSlot
-from PyQt6.QtGui import QIcon, QKeyEvent
-from PyQt6.QtWidgets import QLineEdit, QMainWindow, QPushButton, QToolBar
-from PyQt6.QtWebEngineCore import QWebEnginePage
-from PyQt6.QtWebEngineWidgets import QWebEngineView
+from PySide6.QtCore import QUrl, QEvent, Qt, QCoreApplication, Slot
+from PySide6.QtGui import QIcon, QKeyEvent
+from PySide6.QtWidgets import QLineEdit, QMainWindow, QPushButton, QToolBar
+from PySide6.QtWebEngineCore import QWebEnginePage
+from PySide6.QtWebEngineWidgets import QWebEngineView
 
 
 class MainView(QMainWindow):
@@ -42,25 +42,25 @@ class MainView(QMainWindow):
         self.setCentralWidget(self.webEngineView)
         self.setWindowTitle("PyQtWebEngine example application")
 
-    @pyqtSlot()
+    @Slot()
     def addressChanged(self):
         url = QUrl.fromUserInput(self.addressLineEdit.text())
         if url.isValid():
             self.webEngineView.load(url)
 
-    @pyqtSlot()
+    @Slot()
     def backPressed(self):
         self.webEngineView.page().triggerAction(QWebEnginePage.WebAction.Back)
 
-    @pyqtSlot()
+    @Slot()
     def forwardPressed(self):
         self.webEngineView.page().triggerAction(QWebEnginePage.WebAction.Forward)
 
-    @pyqtSlot(QUrl)
+    @Slot(QUrl)
     def urlChanged(self, url):
         self.addressLineEdit.setText(url.toString())
 
-    @pyqtSlot()
+    @Slot()
     def scrollPressed(self):
         event = QKeyEvent(QEvent.Type.KeyPress, Qt.Key.Key_Down, Qt.KeyboardModifier.NoModifier)
         QCoreApplication.sendEvent(self.webEngineView.focusProxy(), event)

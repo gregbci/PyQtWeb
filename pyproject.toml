@@ -6,8 +6,7 @@ readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
 	"bci-essentials",
-	"pyqt6",
-	"pyqt6-webengine",
+	"pyside6",
 ]
 
 [tool.setuptools.packages.find]
