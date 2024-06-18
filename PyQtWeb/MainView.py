@@ -9,7 +9,7 @@ class MainView(QMainWindow):
     def __init__(self):
         super().__init__()
 
-        initialUrl = "https://instagram.com"
+        initialUrl = "https://www.youtube.com/shorts/"
 
         self.backButton = QPushButton()
         self.backButton.setIcon(QIcon(":/qt-project.org/styles/commonstyle/images/left-32.png"))
