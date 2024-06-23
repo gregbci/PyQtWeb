@@ -1,6 +1,6 @@
 from PySide6.QtCore import QUrl, QEvent, Qt, QCoreApplication, Slot
 from PySide6.QtGui import QIcon, QKeyEvent
-from PySide6.QtWidgets import QLineEdit, QMainWindow, QPushButton, QToolBar
+from PySide6.QtWidgets import QWidget, QLineEdit, QMainWindow, QPushButton, QToolBar, QHBoxLayout
 from PySide6.QtWebEngineCore import QWebEnginePage
 from PySide6.QtWebEngineWidgets import QWebEngineView
 
@@ -38,8 +38,14 @@ class MainView(QMainWindow):
         self.webEngineView.page().titleChanged.connect(self.setWindowTitle)
         self.webEngineView.page().urlChanged.connect(self.urlChanged)
 
+        self.box = QWidget()
+        layout_box = QHBoxLayout(self.box)
+        layout_box.setContentsMargins(20, 20, 20, 20)
+        layout_box.addWidget(self.webEngineView)
+        self.box.setLayout(layout_box)
+
         self.addToolBar(self.toolBar)
-        self.setCentralWidget(self.webEngineView)
+        self.setCentralWidget(self.box)
         self.setWindowTitle("PyQtWebEngine example application")
 
     @Slot()
